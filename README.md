@@ -14,10 +14,10 @@ We’re a team of ECE students with a strong background in Generative AI for Chi
 
 Our innovation "Vericade”, a Logic Lab Arcade, is an educational hardware platform designed to teach and explain Verilog and FPGA architecture for young and old students through gamification. Traditional hardware design is often abstract and intimidating; we bridge this gap by transforming the FPGA board into a build-it-yourself gaming console. The curriculum features four progressive modules:
 
-*Binary Adder: A calculator teaching arithmetic logic and binary representation.
-*LED Maze: A navigation game introducing I/O mapping and combinational logic.
-*Tic-Tac-Toe: A classic strategy game used to teach Finite State Machines (FSMs).
-*Connect Four: A capstone project involving complex arrays and sequential logic.
++ Binary Adder: A calculator teaching arithmetic logic and binary representation.
++ LED Maze: A navigation game introducing I/O mapping and combinational logic.
++ Tic-Tac-Toe: A classic strategy game used to teach Finite State Machines (FSMs).
++ Connect Four: A capstone project involving complex arrays and sequential logic.
 
 By wrapping dry engineering concepts in familiar game mechanics, students won’t just write code; they’ll engineer fun, tangible interactions.
 
