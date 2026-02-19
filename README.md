@@ -1,4 +1,4 @@
-# CogniChip Hackathon | Vericade, “Learning it by Playing it”
+# Cognichip Hackathon | Vericade, “Learning it by Playing it”
 
 ## Team Members:
 Noah Rivera, Senior, nr2953@nyu.edu <br>
