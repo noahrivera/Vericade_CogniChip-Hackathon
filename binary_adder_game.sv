@@ -4,14 +4,15 @@
 // =============================================================================
 // Educational calculator demonstrating binary addition/subtraction.
 //
-// Switch Mapping:
-//   sw[3:0]  - Operand A (4-bit)
-//   sw[7:4]  - Operand B (4-bit)
-//   sw[9:8]  - Mode select:
-//              00 = Show A
-//              01 = Show B
-//              10 = Show A + B (with carry)
-//              11 = Show A - B (two's complement, wrapping)
+// Switch Mapping (adjusted to avoid conflict with sw[1:0] game selection):
+//   sw[5:2]  - Operand A (4-bit)
+//   sw[9:6]  - Operand B (4-bit)
+//   sw[11:10] - Mode select:
+//               00 = Show A
+//               01 = Show B
+//               10 = Show A + B (with carry)
+//               11 = Show A - B (two's complement, wrapping)
+//   sw[1:0]  - Reserved for top-level game selection (must be 00 for Binary Adder)
 //
 // LED Outputs:
 //   led[7:0] - Result value
@@ -35,13 +36,15 @@ module binary_adder_game #(
 );
 
     // Extract operands and mode
+    // NOTE: sw[1:0] is used for game selection at top level,
+    // so operand A uses sw[5:2] to avoid conflict
     logic [3:0] operand_a;
     logic [3:0] operand_b;
     logic [1:0] mode;
 
-    assign operand_a = sw[3:0];
-    assign operand_b = sw[7:4];
-    assign mode = sw[9:8];
+    assign operand_a = {sw[5:4], sw[3:2]};  // Use sw[5:2] for A to preserve sw[1:0] for game select
+    assign operand_b = sw[9:6];              // Shift B to sw[9:6]
+    assign mode = sw[11:10];                 // Shift mode to sw[11:10]
 
     // Result and carry/borrow
     logic [7:0] result;
@@ -114,6 +117,11 @@ module binary_adder_game #(
             logic [4:0] diff_extended;
 
             always_comb begin
+                // Default assignments to prevent latches
+                result = 8'h00;
+                carry_borrow = 1'b0;
+                
+                // Compute arithmetic operations
                 sum_extended = {1'b0, operand_a} + {1'b0, operand_b};
                 diff_extended = {1'b0, operand_a} - {1'b0, operand_b};
 

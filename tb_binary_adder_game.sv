@@ -92,13 +92,22 @@ module tb_binary_adder_game;
         $display("Passed:      %0d", pass_count);
         $display("Failed:      %0d", fail_count);
         if (fail_count == 0) begin
-            $display("Status:      ALL TESTS PASSED");
+            $display("\nTEST PASSED");
         end else begin
-            $display("Status:      SOME TESTS FAILED");
+            $display("\nTEST FAILED");
+            $error("Some tests failed");
         end
         $display("========================================\n");
 
         $finish;
+    end
+    
+    // =========================================================================
+    // Waveform Dump
+    // =========================================================================
+    initial begin
+        $dumpfile("dumpfile.fst");
+        $dumpvars(0);
     end
 
     // =========================================================================

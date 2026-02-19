@@ -147,7 +147,8 @@ module vericade_autograde_tb;
         logic [3:0] actual_sum;
         logic actual_carry;
         
-        sw = {6'b0, 2'b10, b, a};  // Mode 10 = Addition
+        // Set switches: mode=sw[11:10], B=sw[9:6], A=sw[5:2], game=sw[1:0]
+        sw = {4'b0, 2'b10, b, a, 2'b00};  // Mode=10(add), B, A, Game=00(adder)
         repeat(3) @(posedge clk);
         
         actual_sum = led[3:0];
@@ -170,7 +171,8 @@ module vericade_autograde_tb;
                           input logic [3:0] expected_diff);
         logic [3:0] actual_diff;
         
-        sw = {6'b0, 2'b11, b, a};  // Mode 11 = Subtraction
+        // Set switches: mode=sw[11:10], B=sw[9:6], A=sw[5:2], game=sw[1:0]
+        sw = {4'b0, 2'b11, b, a, 2'b00};  // Mode=11(sub), B, A, Game=00(adder)
         repeat(3) @(posedge clk);
         
         actual_diff = led[3:0];
@@ -327,8 +329,11 @@ module vericade_autograde_tb;
         
         if (failed_tests == 0) begin
             $display("\n  STATUS: *** ALL TESTS PASSED ***");
+            $display("\nTEST PASSED");
         end else begin
             $display("\n  STATUS: SOME TESTS FAILED");
+            $display("\nTEST FAILED");
+            $error("Some tests failed");
         end
         
         $display("========================================\n");
@@ -346,5 +351,13 @@ module vericade_autograde_tb;
     
     assert_game_select: assert property(game_select_reflected)
         else $warning("Game selection not reflected in LED[15:14]");
+
+    // =========================================================================
+    // Waveform Dump
+    // =========================================================================
+    initial begin
+        $dumpfile("dumpfile.fst");
+        $dumpvars(0);
+    end
 
 endmodule
