@@ -1,0 +1,169 @@
+# =============================================================================
+# VERICADE Platform - DEPS Configuration for Simulation
+# =============================================================================
+# This file defines simulation targets for all testbenches and RTL modules.
+#
+# Usage:
+#   Individual game tests:
+#     - sim target: bench_binary_adder
+#     - sim target: bench_maze
+#     - sim target: bench_tictactoe
+#     - sim target: bench_connect4
+#
+#   Integration test:
+#     - sim target: bench_autograde
+#
+#   RTL-only targets (for synthesis):
+#     - build target: rtl_binary_adder
+#     - build target: rtl_maze
+#     - build target: rtl_tictactoe
+#     - build target: rtl_connect4
+#     - build target: rtl_top
+# =============================================================================
+
+# =============================================================================
+# Testbench Targets (for simulation)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Binary Adder Game Testbench
+# -----------------------------------------------------------------------------
+bench_binary_adder:
+  deps:
+    - full_adder.sv
+    - binary_adder_game.sv
+    - tb_binary_adder_game.sv
+  top: tb_binary_adder_game
+
+# -----------------------------------------------------------------------------
+# LED Maze Game Testbench
+# -----------------------------------------------------------------------------
+bench_maze:
+  deps:
+    - maze_game.sv
+    - tb_maze_game.sv
+  top: tb_maze_game
+
+# -----------------------------------------------------------------------------
+# Tic-Tac-Toe Game Testbench
+# -----------------------------------------------------------------------------
+bench_tictactoe:
+  deps:
+    - tictactoe_game.sv
+    - tb_tictactoe_game.sv
+  top: tb_tictactoe_game
+
+# -----------------------------------------------------------------------------
+# Connect Four Game Testbench
+# -----------------------------------------------------------------------------
+bench_connect4:
+  deps:
+    - connect4_game.sv
+    - tb_connect4_game.sv
+  top: tb_connect4_game
+
+# -----------------------------------------------------------------------------
+# Complete System Integration Testbench (Auto-Grader)
+# -----------------------------------------------------------------------------
+bench_autograde:
+  deps:
+    - full_adder.sv
+    - input_controller.sv
+    - matrix_driver.sv
+    - binary_adder_game.sv
+    - maze_game.sv
+    - tictactoe_game.sv
+    - connect4_game.sv
+    - game_manager.sv
+    - vericade_top.sv
+    - vericade_autograde_tb.sv
+  top: vericade_autograde_tb
+
+# =============================================================================
+# RTL-Only Targets (for synthesis or elaboration checks)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Binary Adder Game RTL Only
+# -----------------------------------------------------------------------------
+rtl_binary_adder:
+  deps:
+    - full_adder.sv
+    - binary_adder_game.sv
+  top: binary_adder_game
+
+# -----------------------------------------------------------------------------
+# LED Maze Game RTL Only
+# -----------------------------------------------------------------------------
+rtl_maze:
+  deps:
+    - maze_game.sv
+  top: maze_game
+
+# -----------------------------------------------------------------------------
+# Tic-Tac-Toe Game RTL Only
+# -----------------------------------------------------------------------------
+rtl_tictactoe:
+  deps:
+    - tictactoe_game.sv
+  top: tictactoe_game
+
+# -----------------------------------------------------------------------------
+# Connect Four Game RTL Only
+# -----------------------------------------------------------------------------
+rtl_connect4:
+  deps:
+    - connect4_game.sv
+  top: connect4_game
+
+# -----------------------------------------------------------------------------
+# Complete Vericade Top-Level RTL
+# -----------------------------------------------------------------------------
+rtl_top:
+  deps:
+    - full_adder.sv
+    - input_controller.sv
+    - matrix_driver.sv
+    - binary_adder_game.sv
+    - maze_game.sv
+    - tictactoe_game.sv
+    - connect4_game.sv
+    - game_manager.sv
+    - vericade_top.sv
+  top: vericade_top
+
+# =============================================================================
+# Helper Targets (for module-level checks)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Input Controller Module Only
+# -----------------------------------------------------------------------------
+rtl_input_controller:
+  deps:
+    - input_controller.sv
+  top: input_controller
+
+# -----------------------------------------------------------------------------
+# Matrix Driver Module Only
+# -----------------------------------------------------------------------------
+rtl_matrix_driver:
+  deps:
+    - matrix_driver.sv
+  top: matrix_driver
+
+# -----------------------------------------------------------------------------
+# Game Manager Module Only
+# -----------------------------------------------------------------------------
+rtl_game_manager:
+  deps:
+    - game_manager.sv
+  top: game_manager
+
+# -----------------------------------------------------------------------------
+# Full Adder Module Only
+# -----------------------------------------------------------------------------
+rtl_full_adder:
+  deps:
+    - full_adder.sv
+  top: full_adder

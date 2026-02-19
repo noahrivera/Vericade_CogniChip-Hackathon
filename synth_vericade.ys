@@ -1,0 +1,63 @@
+# =============================================================================
+# Yosys Synthesis Script for Vericade Platform
+# =============================================================================
+# This script synthesizes the complete Vericade educational platform.
+# Target: Generic FPGA (technology-independent)
+#
+# Usage:
+#   yosys synth_vericade.ys
+#
+# Output:
+#   - vericade_top.json   : JSON netlist
+#   - vericade_top.v      : Gate-level Verilog
+#   - synthesis_stats.txt : Resource utilization report
+# =============================================================================
+
+# Read all RTL source files in dependency order
+read_verilog -sv full_adder.sv
+read_verilog -sv input_controller.sv
+read_verilog -sv matrix_driver.sv
+read_verilog -sv binary_adder_game.sv
+read_verilog -sv maze_game.sv
+read_verilog -sv tictactoe_game.sv
+read_verilog -sv connect4_game.sv
+read_verilog -sv game_manager.sv
+read_verilog -sv vericade_top.sv
+
+# Set top module
+hierarchy -top vericade_top
+
+# Print hierarchy to verify all modules loaded correctly
+hierarchy -check
+
+# Run synthesis
+# synth: Generic synthesis flow
+# -top: Specify top module (redundant but explicit)
+synth -top vericade_top
+
+# Perform additional optimizations
+opt -full
+
+# ABC optimization (generic logic optimization)
+abc -g AND,OR,XOR,NAND,NOR,XNOR
+
+# Final optimization pass
+opt -full
+
+# Clean up the design
+clean
+
+# Generate statistics (creates synthesis_stats.txt)
+stat -top vericade_top > synthesis_stats.txt
+stat -top vericade_top -width >> synthesis_stats.txt
+
+# Write output files
+write_json vericade_top.json
+write_verilog -noattr vericade_top_synth.v
+
+# Print completion message
+echo "Synthesis complete! Check synthesis_stats.txt for results."
+echo "Output files:"
+echo "  - vericade_top.json (JSON netlist)"
+echo "  - vericade_top_synth.v (Synthesized Verilog)"
+echo "  - synthesis_stats.txt (Statistics)"

@@ -1,0 +1,111 @@
+# =============================================================================
+# Yosys Synthesis Script for FPGA Targets
+# =============================================================================
+# Synthesizes Vericade for specific FPGA architectures.
+#
+# Supported targets:
+#   - ice40   : Lattice iCE40 (HX/LP/UP)
+#   - ecp5    : Lattice ECP5
+#   - xilinx  : Xilinx 7-series and Ultrascale
+#   - generic : Generic FPGA (technology independent)
+#
+# Usage:
+#   yosys synth_fpga.ys -DTARGET=ice40
+#   yosys synth_fpga.ys -DTARGET=ecp5
+#   yosys synth_fpga.ys -DTARGET=xilinx
+#
+# Output:
+#   - vericade_fpga.json     : JSON netlist
+#   - vericade_fpga.v        : Synthesized Verilog
+#   - fpga_synthesis.txt     : Statistics
+# =============================================================================
+
+# Read all RTL source files
+read_verilog -sv full_adder.sv
+read_verilog -sv input_controller.sv
+read_verilog -sv matrix_driver.sv
+read_verilog -sv binary_adder_game.sv
+read_verilog -sv maze_game.sv
+read_verilog -sv tictactoe_game.sv
+read_verilog -sv connect4_game.sv
+read_verilog -sv game_manager.sv
+read_verilog -sv vericade_top.sv
+
+# Set top module
+hierarchy -top vericade_top
+hierarchy -check
+
+# Detect target or use generic
+# Default to generic if not specified
+set target "generic"
+if {[info exists env(FPGA_TARGET)]} {
+    set target $env(FPGA_TARGET)
+}
+
+echo "Target FPGA: $target"
+
+# =============================================================================
+# Target-Specific Synthesis
+# =============================================================================
+
+# Lattice iCE40
+if {$target == "ice40"} {
+    echo "Synthesizing for Lattice iCE40..."
+    synth_ice40 -top vericade_top -json vericade_fpga.json
+    stat >> fpga_synthesis.txt
+    echo "iCE40 synthesis complete!"
+    echo "Next steps:"
+    echo "  nextpnr-ice40 --json vericade_fpga.json --pcf pins.pcf --asc vericade.asc"
+    echo "  icepack vericade.asc vericade.bin"
+}
+
+# Lattice ECP5
+if {$target == "ecp5"} {
+    echo "Synthesizing for Lattice ECP5..."
+    synth_ecp5 -top vericade_top -json vericade_fpga.json
+    stat >> fpga_synthesis.txt
+    echo "ECP5 synthesis complete!"
+    echo "Next steps:"
+    echo "  nextpnr-ecp5 --json vericade_fpga.json --lpf pins.lpf --textcfg vericade.config"
+    echo "  ecppack vericade.config vericade.bit"
+}
+
+# Xilinx 7-series / Ultrascale
+if {$target == "xilinx"} {
+    echo "Synthesizing for Xilinx..."
+    synth_xilinx -top vericade_top
+    write_verilog -noattr vericade_fpga.v
+    write_json vericade_fpga.json
+    stat >> fpga_synthesis.txt
+    echo "Xilinx synthesis complete!"
+    echo "Next steps:"
+    echo "  Use Vivado for place & route:"
+    echo "  vivado -mode batch -source vivado_pnr.tcl"
+}
+
+# Generic FPGA
+if {$target == "generic"} {
+    echo "Synthesizing for generic FPGA..."
+    synth -top vericade_top
+    opt -full
+    abc -g AND,OR,XOR
+    opt -full
+    clean
+    write_verilog -noattr vericade_fpga.v
+    write_json vericade_fpga.json
+    stat >> fpga_synthesis.txt
+    echo "Generic FPGA synthesis complete!"
+}
+
+# Final statistics
+echo ""
+echo "=========================================="
+echo "FPGA Synthesis Summary"
+echo "=========================================="
+stat -top vericade_top -width
+
+echo ""
+echo "Output files:"
+echo "  - vericade_fpga.json"
+echo "  - vericade_fpga.v (if applicable)"
+echo "  - fpga_synthesis.txt"
