@@ -67,12 +67,16 @@ module maze_game (
     end
 
     // =========================================================================
-    // Wall Check Function
+    // Wall Check Function (Yosys-compatible classic Verilog syntax)
     // =========================================================================
-    function automatic logic is_wall(input logic [2:0] x, input logic [2:0] y);
-        logic [5:0] index;
-        index = {y, x};  // Flatten 2D coordinate
-        return maze_walls[index];
+    function is_wall;
+        input [2:0] x;
+        input [2:0] y;
+        reg [5:0] index;
+        begin
+            index = {y, x};  // Flatten 2D coordinate
+            is_wall = maze_walls[index];
+        end
     endfunction
 
     // =========================================================================

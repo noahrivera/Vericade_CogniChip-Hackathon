@@ -131,15 +131,22 @@ module connect4_game (
     end
 
     // =========================================================================
-    // Find Lowest Empty Row in Column
+    // Find Lowest Empty Row in Column (Yosys-compatible Verilog)
     // =========================================================================
-    function automatic logic [2:0] find_empty_row(input logic [2:0] col);
-        for (int r = 5; r >= 0; r--) begin
-            if (board[r][col] == 2'b00) begin
-                return r[2:0];
+    function [2:0] find_empty_row;
+        input [2:0] col;
+        integer r;
+        reg found;
+        begin
+            found = 1'b0;
+            find_empty_row = 3'd7;  // Default: invalid (column full)
+            for (r = 5; r >= 0; r = r - 1) begin
+                if (!found && (board[r][col] == 2'b00)) begin
+                    find_empty_row = r[2:0];
+                    found = 1'b1;
+                end
             end
         end
-        return 3'd7;  // Invalid (column full)
     endfunction
 
     // =========================================================================

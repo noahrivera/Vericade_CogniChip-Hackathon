@@ -1,0 +1,66 @@
+# =============================================================================
+# Yosys Synthesis Script for Individual Game Modules
+# =============================================================================
+# Synthesizes each game module separately for area comparison.
+#
+# Usage:
+#   yosys synth_individual_games.ys
+#
+# Output:
+#   - <game>_synth.v for each game
+#   - individual_stats.txt with per-game statistics
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Game 1: Binary Adder
+# -----------------------------------------------------------------------------
+read_verilog -sv full_adder.sv
+read_verilog -sv binary_adder_game.sv
+hierarchy -top binary_adder_game
+synth -top binary_adder_game
+stat -top binary_adder_game > individual_stats.txt
+write_verilog -noattr binary_adder_game_synth.v
+echo "Binary Adder synthesized -> binary_adder_game_synth.v"
+
+# Clean for next module
+design -reset
+
+# -----------------------------------------------------------------------------
+# Game 2: LED Maze
+# -----------------------------------------------------------------------------
+read_verilog -sv maze_game.sv
+hierarchy -top maze_game
+synth -top maze_game
+stat -top maze_game >> individual_stats.txt
+write_verilog -noattr maze_game_synth.v
+echo "LED Maze synthesized -> maze_game_synth.v"
+
+# Clean for next module
+design -reset
+
+# -----------------------------------------------------------------------------
+# Game 3: Tic-Tac-Toe
+# -----------------------------------------------------------------------------
+read_verilog -sv tictactoe_game.sv
+hierarchy -top tictactoe_game
+synth -top tictactoe_game
+stat -top tictactoe_game >> individual_stats.txt
+write_verilog -noattr tictactoe_game_synth.v
+echo "Tic-Tac-Toe synthesized -> tictactoe_game_synth.v"
+
+# Clean for next module
+design -reset
+
+# -----------------------------------------------------------------------------
+# Game 4: Connect Four
+# -----------------------------------------------------------------------------
+read_verilog -sv connect4_game.sv
+hierarchy -top connect4_game
+synth -top connect4_game
+stat -top connect4_game >> individual_stats.txt
+write_verilog -noattr connect4_game_synth.v
+echo "Connect Four synthesized -> connect4_game_synth.v"
+
+echo ""
+echo "All individual games synthesized!"
+echo "Check individual_stats.txt for per-game statistics"
