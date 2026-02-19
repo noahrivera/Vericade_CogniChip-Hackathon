@@ -1,8 +1,8 @@
 # CogniChip Hackathon | Vericade, “Learning it by Playing it”
 
 ## Team Members:
-Noah Rivera, Senior, nr2953@nyu.edu 
-Filip Bukowski, Senior, fhb2040@nyu.edu 
+Noah Rivera, Senior, nr2953@nyu.edu <br>
+Filip Bukowski, Senior, fhb2040@nyu.edu <br>
 Manny Brito, Senior, eb4194@nyu.edu
 
 ## Problem Domain:
