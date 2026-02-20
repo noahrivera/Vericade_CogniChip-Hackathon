@@ -228,7 +228,7 @@ All issues resolved! The following fixes were applied during development:
 
 ## 🎓 Educational Value
 
-### Progressive Learning Path
+### Example Timeline Learning Path
 
 - **Week 1-2:** Binary Adder - Learn arithmetic & parameterization
 - **Week 3-4:** LED Maze - Master I/O & collision detection
@@ -356,4 +356,4 @@ Powered by: Cognichip Generative AI for Chip Design
 
 ---
 
-*Vericade - Where Learning Meets Play in the World of Digital Logic* 
+*Vericade - Learning it by Playing it* 
