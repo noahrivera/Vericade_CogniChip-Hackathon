@@ -14,15 +14,15 @@
 **Filip Bukowski**, Senior, fhb2040@nyu.edu  
 **Manny Brito**, Senior, eb4194@nyu.edu
 
-*ECE students with a passion for making learning enjoyable through Generative AI for Chip Design*
+*We’re a team of ECE students with a strong background in Generative AI for Chip Design, with a passion to make learning enjoyable for all ages. It doesn’t matter where you start, what matters is learning to use powerful tools that can make your imagination come alive.*
 
 ---
 
 ## 💡 Project Vision
 
-Digital logic, Verilog, and FPGA design can be intimidating for beginners - characterized by dry syntax, complex timing constraints, and abstract concepts. **Vericade bridges this gap** by transforming FPGA boards into build-it-yourself gaming consoles, turning Verilog from a tedious hardware description language into interactive, tangible experiences.
+Digital logic, verilog, and the use of FPGA’s can become very difficult for beginners to enter. It is often characterized by dry syntax, complex timing constraints, and abstract hardware concepts that can scare away beginner learners. We selected this domain because there’s a critical need to bridge the gap between "coding" (software) and "engineering" (hardware) for early students. By gamifying the learning process, we transform Verilog from a tedious hardware description language into a "magic spell" that controls physical inputs and outputs, making the learning curve significantly less steep and far more rewarding and enjoyable.
 
-By gamifying the learning process and leveraging **Generative AI** (via Cognichip tools) for RTL and testbench generation, we've created a complete educational platform with AI-auto-graded verification that makes hardware design accessible and fun.
+Our innovation "Vericade”, a Logic Lab Arcade, is an educational hardware platform designed to teach and explain Verilog and FPGA architecture for young and old students through gamification. Traditional hardware design is often abstract and intimidating; we bridge this gap by transforming the FPGA board into a build-it-yourself gaming console.
 
 ---
 
