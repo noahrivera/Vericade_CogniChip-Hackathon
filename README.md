@@ -1,6 +1,6 @@
 # VERICADE - Educational FPGA Logic Lab Arcade
 
-**"Learning it by Playing it" - CogniChip Hackathon Project**
+**"Learning it by Playing it" - Cognichip Hackathon Project**
 
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success)]()
 [![Verification](https://img.shields.io/badge/Verification-100%25%20Pass-success)]()
