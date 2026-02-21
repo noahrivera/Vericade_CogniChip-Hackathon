@@ -14,7 +14,7 @@
 **Filip Bukowski**, Senior, fhb2040@nyu.edu  
 **Manny Brito**, Senior, eb4194@nyu.edu
 
-*We’re a team of ECE students with a strong background in Generative AI for Chip Design, with a passion to make learning enjoyable for all ages. It doesn’t matter where you start, what matters is learning to use powerful tools that can make your imagination come alive.*
+*We’re a team of ECE undergraduate students with a strong background in Generative AI for Chip Design, with a passion to make learning enjoyable for all ages. It doesn’t matter where you start, what matters is learning to use powerful tools that can make your imagination come alive.*
 
 ---
 
