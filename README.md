@@ -1,4 +1,4 @@
-# VERICADE - Educational FPGA Logic Lab Arcade
+# VERICADE - Educational FPGA Logic Lab Arcade 
 
 **"Learning it by Playing it" - Cognichip Hackathon Project**
 
