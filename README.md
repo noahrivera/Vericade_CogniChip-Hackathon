@@ -22,7 +22,7 @@
 
 Digital logic, verilog, and the use of FPGA’s can become very difficult for beginners to enter. It is often characterized by dry syntax, complex timing constraints, and abstract hardware concepts that can scare away beginner learners. We selected this domain because there’s a critical need to bridge the gap between "coding" (software) and "engineering" (hardware) for early students. By gamifying the learning process, we transform Verilog from a tedious hardware description language into a "magic spell" that controls physical inputs and outputs, making the learning curve significantly less steep and far more rewarding and enjoyable.
 
-Our innovation "Vericade”, a Logic Lab Arcade, is an educational hardware platform designed to teach and explain Verilog and FPGA architecture for young and old students through gamification. Traditional hardware design is often abstract and intimidating; we bridge this gap by transforming the FPGA board into a build-it-yourself gaming console.
+Our innovation "Vericade”, a Logic Lab Arcade, is an educational hardware platform designed to teach and explain Verilog and FPGA architecture for young and old students through gamification. Traditional hardware design is often abstract and intimidating, so we bridge this gap by transforming the FPGA board into a build-it-yourself gaming console.
 
 ---
 
