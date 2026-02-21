@@ -330,7 +330,7 @@ brew install yosys
 **Vericade Educational Platform**  
 Free for educational purposes  
 Created by: Noah Rivera, Filip Bukowski, Manny Brito  
-Powered by: Cognichip Generative AI for Chip Design
+Powered by: Cognichip
 
 ---
 
@@ -353,6 +353,12 @@ Powered by: Cognichip Generative AI for Chip Design
 **Vericade successfully transforms FPGA learning from abstract and intimidating into interactive and fun.** By combining gamification with AI-powered development tools, we've created a complete educational platform that teaches digital logic through four progressive games.
 
 **All modules are verified, synthesized, and ready for deployment - making hardware design accessible and enjoyable for students of all levels!**
+
+---
+
+## 🔥 Overview Presentation (Setup, Trials, Challenges, & Results)
+
+https://docs.google.com/presentation/d/1pHyMBt5EgYdjnhtF03KYGc10a90Xzc3D-CDt2XpHo5M/edit?usp=sharing
 
 ---
 
